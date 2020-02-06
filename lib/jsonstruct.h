@@ -25,9 +25,14 @@ void createJSONFromMap(map<string,node> MAP_node){
 
 	for(map<string, node>::iterator it=MAP_node.begin(); it!=MAP_node.end(); ++it){
 		node cpt_node = it->second;
-		str_JSON_node += createNodeFromMAP(cpt_node);
-		if(it != last_el)
-			str_JSON_node += ",";
+		//Filtrage des noeuds vides
+		if(cpt_node.label != "None")
+		{
+			str_JSON_node += createNodeFromMAP(cpt_node);
+			if(it != last_el)
+				str_JSON_node += ",";
+		}
+
 
 	}
 

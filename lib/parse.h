@@ -8,6 +8,7 @@
 #define DELIMITER ","
 #define FOS_FILE_CSV "datas/fos.csv"
 #define DBLP_FILE_CSV "datas/dblp.csv"
+#define MINIMUM_OCCURRENCE_LIMITATION 10
 
 
 vector<string> parseFOSFromDBLP(string str_fos);
@@ -21,6 +22,8 @@ map<string,int> parseFOS(){
 	ifstream infile(FOS_FILE_CSV);
 	string line;
 	int cptLine = 0;
+	int ignored_theme = 0;
+
 	while(getline(infile,line)){
 
 		if(cptLine != 0){
@@ -30,7 +33,12 @@ map<string,int> parseFOS(){
 				token = line.substr(0,pos);
 				string str_cpt = line.substr(token.length()+1,line.length()-1);
 				int cpt = stoi(str_cpt);
-				MAP_theme[token] = cpt;
+				//CONTROLE DE LA VALEUR POUR EVINCER LES THEMES AVEC UNE OCCURENCE FAIBLE
+				if(cpt > 10 )
+					MAP_theme[token] = cpt;
+				else
+					ignored_theme++;
+
 				line.erase(0,pos + 1);
 			}
 		}
@@ -38,6 +46,12 @@ map<string,int> parseFOS(){
 
 	}
 
+	string str_limitation_theme = "Limitation des champs en f(x) de leur occurence : " + to_string(MINIMUM_OCCURRENCE_LIMITATION);
+	string str_ignored_theme = "Nombre de champs ignorée : " + to_string(ignored_theme);
+	string str_ok_theme = "Nombre de champs prises en compte : "+ to_string(MAP_theme.size());
+	logger("INFO",str_limitation_theme);
+	logger("INFO",str_ignored_theme);
+	logger("INFO",str_ok_theme);
 	return MAP_theme;
 }
 
@@ -111,7 +125,9 @@ vector<string> parseFOSFromDBLP(string str_fos){
 	while((pos = str_fos.find(';')) != std::string::npos){
 		one_random_fos = str_fos.substr(0,pos);
 		string a_fos =  extractFosFromString(one_random_fos);
-		v_fos.push_back(a_fos);
+		//Filtrage des theme non voulus
+		if(a_fos != "None")
+			v_fos.push_back(a_fos);
 		//cout << a_fos << endl;
 		str_fos.erase(0,pos + 1);
 	}

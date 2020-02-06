@@ -4,9 +4,9 @@
 #include <map>
 #include <functional>
 #include <set>
+#include "lib/logger.h"
 #include "lib/node.h"
 #include "lib/parse.h"
-#include "lib/logger.h"
 #include "lib/jsonstruct.h"
 
 #define DELIMITER ","
@@ -38,7 +38,7 @@ int main(int argc, char** argv){
 
 
 	logger("TEST","Connexions du noeud 'computer science'.");
-	cout << MAP_nodes["10-foot user interface"].toString();
+	cout << MAP_nodes["computer science"].toString();
 
 	logger("INFO","Création du fichier JSON correspondant.");
 	createJSONFromMap(MAP_nodes);
