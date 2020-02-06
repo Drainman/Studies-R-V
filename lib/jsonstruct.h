@@ -48,7 +48,8 @@ string createNodeFromMAP(node n){
 	string str_return = "{";
 	str_return  += createNodeField("label",n.label) + ",";
 	str_return += createNodeField("weight",to_string(n.weight)) + ",";
-	str_return += createNodeField("nb_connections",to_string(n.connections.size()));
+	str_return += createNodeField("nb_connections",to_string(n.connections.size())) + ",";
+	str_return += createListConnectionFromMAP(n.str_connections);
 	str_return += "}";
 	return str_return;
 
@@ -56,6 +57,20 @@ string createNodeFromMAP(node n){
 
 
 string createListConnectionFromMAP(vector<string> arr_str_connections){
+
+	vector<string>::iterator last_el = arr_str_connections.end();
+	--last_el;
+	string str_list = "\"list_connections\":[";
+
+	for(vector<string>::iterator it=arr_str_connections.begin(); it!=arr_str_connections.end(); ++it){
+		str_list += "\"" + *it + "\"";
+		if(it != last_el)
+			str_list += ",";
+
+	}
+
+	str_list += "]";
+	return str_list;
 }
 
 

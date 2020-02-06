@@ -11,7 +11,7 @@
 
 #define DELIMITER ","
 #define LIMITED_WEIGHT 10000
-#define LINE_LIMITATION 100// 10000
+#define LINE_LIMITATION 10000// 10000
 
 using namespace std;
 
@@ -37,8 +37,8 @@ int main(int argc, char** argv){
 	logger("INFO",str_limit);
 
 
-	// logger("TEST","Connexions du noeud 'computer science'.");
-	// cout << MAP_nodes["brightness"].toString();
+	logger("TEST","Connexions du noeud 'computer science'.");
+	cout << MAP_nodes["10-foot user interface"].toString();
 
 	logger("INFO","Création du fichier JSON correspondant.");
 	createJSONFromMap(MAP_nodes);
