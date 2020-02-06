@@ -8,13 +8,11 @@ using namespace std;
 
 class node{
 
-	int weight;
-	string label;
-
-
 	public:
 		vector<node *> connections;
 		vector<string> str_connections;
+		int weight;
+		string label;
 
 		node(int w=0,string l="None",vector<node*> vn = {}){
 			weight = w; //Le nombre d'articles auquel il est lié (x)

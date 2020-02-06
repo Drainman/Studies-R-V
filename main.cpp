@@ -7,10 +7,11 @@
 #include "lib/node.h"
 #include "lib/parse.h"
 #include "lib/logger.h"
+#include "lib/jsonstruct.h"
 
 #define DELIMITER ","
 #define LIMITED_WEIGHT 10000
-#define LINE_LIMITATION 10000
+#define LINE_LIMITATION 100// 10000
 
 using namespace std;
 
@@ -37,9 +38,10 @@ int main(int argc, char** argv){
 
 
 	// logger("TEST","Connexions du noeud 'computer science'.");
-	cout << MAP_nodes["brightness"].toString();
-	//cout << MAP_nodes["icon"].toString();
-	//cout << MAP_nodes["graphical user interface"].toString();
+	// cout << MAP_nodes["brightness"].toString();
+
+	logger("INFO","Création du fichier JSON correspondant.");
+	createJSONFromMap(MAP_nodes);
 
 
 }
