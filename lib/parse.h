@@ -8,7 +8,7 @@
 #define DELIMITER ","
 #define FOS_FILE_CSV "datas/fos.csv"
 #define DBLP_FILE_CSV "datas/dblp.csv"
-#define MINIMUM_OCCURRENCE_LIMITATION 10
+#define MINIMUM_OCCURRENCE_LIMITATION 50
 
 
 vector<string> parseFOSFromDBLP(string str_fos);

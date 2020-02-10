@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <deque>
+#include <map>
 
 using namespace std;
 
@@ -11,6 +11,8 @@ class node{
 	public:
 		vector<node *> connections;
 		vector<string> str_connections;
+		map<string,int> connections_with_weight; //epaisseur des liens en fonction de la valeur
+
 		int weight;
 		string label;
 
@@ -31,16 +33,21 @@ class node{
 
 		void connectTo(node * n){
 			string pass_node_label = n->label;
+			//Si connection non déja existante : Ajout aux listes et init de la map
 			if( !alreadyConnect(pass_node_label) ){
 				connections.push_back(n);
 				str_connections.push_back(n->label);
+				connections_with_weight[n->label] = 1;
 			}
+			//Sinon, update map
+			else
+				connections_with_weight[n->label]++;
 		}
 
 		string showConnection(){
 			string str_connection = "";
 			for(node * element : connections){
-				str_connection += "\t* "+ element->label + "\n";
+				str_connection += "\t* "+ element->label + " ["+to_string(connections_with_weight[element->label])+"]\n";
 			}
 			return str_connection;
 		}

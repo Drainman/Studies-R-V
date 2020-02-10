@@ -36,12 +36,15 @@ int main(int argc, char** argv){
 	string str_limit = "Données récupérées sur la base de " + to_string(LINE_LIMITATION) + " lignes.";
 	logger("INFO",str_limit);
 
-
-	logger("TEST","Connexions du noeud 'computer science'.");
-	cout << MAP_nodes["computer science"].toString();
-
 	logger("INFO","Création du fichier JSON correspondant.");
 	createJSONFromMap(MAP_nodes);
+
+	// print_seperator();
+	// string str_test = "Test pour le thème : ";
+	// string to_test = "level of detail";
+	// str_test += to_test;
+	// logger("TEST",str_test);
+	// cout << MAP_nodes[to_test].toString() << endl;
 
 
 }
