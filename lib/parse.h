@@ -7,8 +7,8 @@
 
 #define DELIMITER ","
 #define FOS_FILE_CSV "datas/fos.csv"
-#define DBLP_FILE_CSV "datas/dblp.csv"
-#define MINIMUM_OCCURRENCE_LIMITATION 50
+#define DBLP_FILE_CSV "datas/extract_dblp.csv"
+#define MINIMUM_OCCURRENCE_LIMITATION 200
 
 
 vector<string> parseFOSFromDBLP(string str_fos);
@@ -34,7 +34,7 @@ map<string,int> parseFOS(){
 				string str_cpt = line.substr(token.length()+1,line.length()-1);
 				int cpt = stoi(str_cpt);
 				//CONTROLE DE LA VALEUR POUR EVINCER LES THEMES AVEC UNE OCCURENCE FAIBLE
-				if(cpt > 10 )
+				if(cpt > MINIMUM_OCCURRENCE_LIMITATION )
 					MAP_theme[token] = cpt;
 				else
 					ignored_theme++;

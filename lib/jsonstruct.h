@@ -30,7 +30,7 @@ void createJSONFromMap(map<string,node> MAP_node){
 		{
 			str_JSON_node += createNodeFromMAP(cpt_node);
 			if(it != last_el)
-				str_JSON_node += ",";
+				str_JSON_node += ",\n";
 		}
 
 
